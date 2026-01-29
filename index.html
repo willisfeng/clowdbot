@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clowdbot - Your Personal AI Assistant in the Cloud</title>
+    <meta name="description" content="Run your own Clawdbot instance in the cloud - the AI that actually does things. Manages email, calendar, tasks, and more. Always on, accessible anywhere.">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#eef2ff',
+                            100: '#e0e7ff',
+                            200: '#c7d2fe',
+                            300: '#a5b4fc',
+                            400: '#818cf8',
+                            500: '#6366f1',
+                            600: '#4f46e5',
+                            700: '#4338ca',
+                            800: '#3730a3',
+                            900: '#312e81',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+        body { font-family: 'Inter', sans-serif; }
+        .gradient-bg {
+            background: linear-gradient(135deg, #1e1b4b 0%, #312e81 50%, #1e1b4b 100%);
+        }
+        .terminal-glow {
+            box-shadow: 0 0 60px rgba(99, 102, 241, 0.3);
+        }
+        .feature-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+        .pricing-card {
+            background: linear-gradient(180deg, rgba(99, 102, 241, 0.1) 0%, rgba(99, 102, 241, 0.05) 100%);
+        }
+        @keyframes blink {
+            0%, 50% { opacity: 1; }
+            51%, 100% { opacity: 0; }
+        }
+        .cursor-blink {
+            animation: blink 1s infinite;
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+        .float-animation {
+            animation: float 3s ease-in-out infinite;
+        }
+    </style>
+</head>
+<body class="bg-gray-950 text-gray-100 antialiased">
+    <!-- Navigation -->
+    <nav class="fixed top-0 left-0 right-0 z-50 bg-gray-950/80 backdrop-blur-lg border-b border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex items-center space-x-2">
+                    <span class="text-2xl">☁️🦞</span>
+                    <span class="text-xl font-bold text-white">Clowdbot</span>
+                </div>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#features" class="text-gray-300 hover:text-white transition-colors">Features</a>
+                    <a href="#how-it-works" class="text-gray-300 hover:text-white transition-colors">How It Works</a>
+                    <a href="#pricing" class="text-gray-300 hover:text-white transition-colors font-medium text-brand-400 hover:text-brand-300">Pay-As-You-Go Pricing</a>
+                    <a href="#specs" class="text-gray-300 hover:text-white transition-colors">Specs</a>
+                </div>
+                <a href="https://clowdbot.atxp.ai" class="bg-brand-600 hover:bg-brand-700 text-white px-5 py-2 rounded-lg font-medium transition-colors">
+                    Get Started
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="gradient-bg min-h-screen flex items-center pt-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <div>
+                    <div class="inline-flex items-center px-3 py-1 rounded-full bg-brand-500/20 text-brand-300 text-sm font-medium mb-6">
+                        <span class="w-2 h-2 bg-green-400 rounded-full mr-2"></span>
+                        Now Available
+                    </div>
+                    <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white leading-tight mb-6">
+                        Your Personal
+                        <a href="https://clawd.bot" class="text-transparent bg-clip-text bg-gradient-to-r from-brand-400 to-purple-400 hover:from-brand-300 hover:to-purple-300">Clawdbot</a>
+                        in the Cloud
+                    </h1>
+                    <p class="text-xl text-gray-300 mb-8 leading-relaxed">
+                        Run <a href="https://clawd.bot" class="text-brand-400 hover:text-brand-300 underline">Clawdbot</a> — the AI that actually does things — in the cloud. Always on, accessible anywhere, with persistent memory and access to all major LLMs.
+                    </p>
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <a href="https://clowdbot.atxp.ai" class="inline-flex flex-col items-center justify-center px-8 py-4 bg-brand-600 hover:bg-brand-700 text-white rounded-xl transition-all hover:scale-105">
+                            <span class="text-lg font-semibold">🚀 Launch Your Instance</span>
+                            <span class="text-sm text-brand-200">$0.01 to launch + pay only for LLM usage</span>
+                        </a>
+                        <a href="#how-it-works" class="inline-flex items-center justify-center px-8 py-4 bg-white/10 hover:bg-white/20 text-white text-lg font-semibold rounded-xl transition-colors border border-white/20">
+                            Learn More
+                        </a>
+                    </div>
+                    <div class="mt-8 flex flex-wrap items-center gap-6 text-sm text-gray-400">
+                        <div class="flex items-center gap-2">
+                            <svg class="w-5 h-5 text-green-400" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
+                            Always on
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <svg class="w-5 h-5 text-green-400" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
+                            Pay-as-you-go
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <svg class="w-5 h-5 text-green-400" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
+                            Persistent memory
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <svg class="w-5 h-5 text-green-400" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
+                            All major LLMs
+                        </div>
+                    </div>
+                </div>
+                <div class="relative float-animation">
+                    <div class="bg-gray-900 rounded-2xl terminal-glow overflow-hidden border border-gray-700">
+                        <div class="flex items-center gap-2 px-4 py-3 bg-gray-800 border-b border-gray-700">
+                            <div class="w-3 h-3 rounded-full bg-red-500"></div>
+                            <div class="w-3 h-3 rounded-full bg-yellow-500"></div>
+                            <div class="w-3 h-3 rounded-full bg-green-500"></div>
+                            <span class="ml-2 text-gray-400 text-sm">clowdbot ~ terminal</span>
+                        </div>
+                        <div class="p-6 font-mono text-sm">
+                            <div class="text-green-400">$ clawdbot</div>
+                            <div class="mt-2 text-gray-300">╭─────────────────────────────────────────╮</div>
+                            <div class="text-gray-300">│  <span class="text-brand-400">Clawdbot</span>                              │</div>
+                            <div class="text-gray-300">│  The AI that actually does things       │</div>
+                            <div class="text-gray-300">╰─────────────────────────────────────────╯</div>
+                            <div class="mt-4 text-gray-400">Starting session...</div>
+                            <div class="mt-1 text-green-400">✓ Memory loaded (147 items)</div>
+                            <div class="text-green-400">✓ Skills ready (12 active)</div>
+                            <div class="text-green-400">✓ Connected to WhatsApp, Telegram</div>
+                            <div class="mt-4 text-gray-300">
+                                <span class="text-brand-400">clawdbot&gt;</span> <span class="cursor-blink">▊</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="py-24 bg-gray-900">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl sm:text-4xl font-bold text-white mb-4">Why Run Clawdbot in the Cloud?</h2>
+                <p class="text-xl text-gray-400 max-w-2xl mx-auto"><a href="https://clawd.bot" class="text-brand-400 hover:text-brand-300">Clawdbot</a> normally runs on your local machine. Clowdbot gives you a cloud instance that's always available.</p>
+            </div>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Feature 1 -->
+                <div class="feature-card bg-gray-800/50 rounded-2xl p-8 border border-gray-700/50 transition-all duration-300">
+                    <div class="w-14 h-14 bg-brand-500/20 rounded-xl flex items-center justify-center mb-6">
+                        <svg class="w-7 h-7 text-brand-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-semibold text-white mb-3">Always On</h3>
+                    <p class="text-gray-400">Your assistant runs 24/7 in the cloud. Background tasks, scheduled jobs, and reminders work even when your laptop is closed.</p>
+                </div>
+                <!-- Feature 2 -->
+                <div class="feature-card bg-gray-800/50 rounded-2xl p-8 border border-gray-700/50 transition-all duration-300">
+                    <div class="w-14 h-14 bg-green-500/20 rounded-xl flex items-center justify-center mb-6">
+                        <svg class="w-7 h-7 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-semibold text-white mb-3">Access Anywhere</h3>
+                    <p class="text-gray-400">Manage your Clawdbot from any device via browser terminal. Chat with it through WhatsApp, Telegram, or any connected app.</p>
+                </div>
+                <!-- Feature 3 -->
+                <div class="feature-card bg-gray-800/50 rounded-2xl p-8 border border-gray-700/50 transition-all duration-300">
+                    <div class="w-14 h-14 bg-purple-500/20 rounded-xl flex items-center justify-center mb-6">
+                        <svg class="w-7 h-7 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-semibold text-white mb-3">Persistent Memory</h3>
+                    <p class="text-gray-400">Your context, skills, and preferences survive restarts. Clawdbot remembers you and becomes uniquely yours over time.</p>
+                </div>
+                <!-- Feature 4 -->
+                <div class="feature-card bg-gray-800/50 rounded-2xl p-8 border border-yellow-500/30 transition-all duration-300 relative overflow-hidden">
+                    <div class="absolute top-0 right-0 bg-yellow-500/20 text-yellow-300 text-xs font-medium px-3 py-1 rounded-bl-lg">No subscription</div>
+                    <div class="w-14 h-14 bg-yellow-500/20 rounded-xl flex items-center justify-center mb-6">
+                        <svg class="w-7 h-7 text-yellow-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-semibold text-white mb-3">True Pay-As-You-Go</h3>
+                    <p class="text-gray-400">Just $0.01 to launch an instance + LLM tokens at market price. No hourly fees. No minimums.</p>
+                </div>
+                <!-- Feature 5 -->
+                <div class="feature-card bg-gray-800/50 rounded-2xl p-8 border border-gray-700/50 transition-all duration-300">
+                    <div class="w-14 h-14 bg-red-500/20 rounded-xl flex items-center justify-center mb-6">
+                        <svg class="w-7 h-7 text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-semibold text-white mb-3">One-Click Setup</h3>
+                    <p class="text-gray-400">Skip the local installation. Launch a fully configured Clawdbot instance instantly—no dependencies, no configuration.</p>
+                </div>
+                <!-- Feature 6 -->
+                <div class="feature-card bg-gray-800/50 rounded-2xl p-8 border border-gray-700/50 transition-all duration-300">
+                    <div class="w-14 h-14 bg-cyan-500/20 rounded-xl flex items-center justify-center mb-6">
+                        <svg class="w-7 h-7 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-semibold text-white mb-3">All Major LLMs Included</h3>
+                    <p class="text-gray-400">Access Claude, GPT, Gemini, and more. Pay per token with no API keys to manage or separate subscriptions.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works -->
+    <section id="how-it-works" class="py-24 bg-gray-950">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl sm:text-4xl font-bold text-white mb-4">How It Works</h2>
+                <p class="text-xl text-gray-400 max-w-2xl mx-auto">Get your personal AI assistant running in the cloud in three simple steps.</p>
+            </div>
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Step 1 -->
+                <div class="relative">
+                    <div class="flex items-center justify-center w-16 h-16 bg-brand-600 rounded-2xl text-white text-2xl font-bold mb-6">1</div>
+                    <h3 class="text-xl font-semibold text-white mb-3">Sign In</h3>
+                    <p class="text-gray-400">Log in with your ATXP account. If you don't have one, create it in seconds.</p>
+                    <div class="hidden md:block absolute top-8 left-full w-full h-0.5 bg-gradient-to-r from-brand-600 to-transparent"></div>
+                </div>
+                <!-- Step 2 -->
+                <div class="relative">
+                    <div class="flex items-center justify-center w-16 h-16 bg-brand-600 rounded-2xl text-white text-2xl font-bold mb-6">2</div>
+                    <h3 class="text-xl font-semibold text-white mb-3">Launch Instance</h3>
+                    <p class="text-gray-400">Click the launch button. Your personal Clawdbot instance spins up automatically in the nearest region.</p>
+                    <div class="hidden md:block absolute top-8 left-full w-full h-0.5 bg-gradient-to-r from-brand-600 to-transparent"></div>
+                </div>
+                <!-- Step 3 -->
+                <div>
+                    <div class="flex items-center justify-center w-16 h-16 bg-brand-600 rounded-2xl text-white text-2xl font-bold mb-6">3</div>
+                    <h3 class="text-xl font-semibold text-white mb-3">Connect & Go</h3>
+                    <p class="text-gray-400">Access your assistant via browser terminal, then connect your chat apps, email, calendar, and more.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section id="pricing" class="py-24 bg-gray-900">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <div class="inline-flex items-center px-4 py-2 rounded-full bg-green-500/20 text-green-300 text-sm font-medium mb-4">
+                    <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
+                    No subscriptions, no commitments
+                </div>
+                <h2 class="text-3xl sm:text-4xl font-bold text-white mb-4">True Pay-As-You-Go Pricing</h2>
+                <p class="text-xl text-gray-400 max-w-2xl mx-auto">Only pay for LLM tokens you actually use. No hourly fees, no subscriptions.</p>
+            </div>
+            <div class="max-w-3xl mx-auto">
+                <div class="grid md:grid-cols-2 gap-6">
+                    <!-- Instance Launch -->
+                    <div class="pricing-card rounded-3xl p-8 border border-brand-500/30">
+                        <div class="text-center">
+                            <div class="text-brand-400 text-sm font-medium uppercase tracking-wide mb-2">Instance Launch</div>
+                            <div class="flex items-baseline justify-center gap-2 mb-2">
+                                <span class="text-4xl font-bold text-white">$0.01</span>
+                                <span class="text-gray-400 text-lg">/launch</span>
+                            </div>
+                            <div class="text-gray-500 text-sm mb-6">One-time fee each time you spin up</div>
+                            <ul class="space-y-3 text-left text-sm">
+                                <li class="flex items-center gap-3">
+                                    <svg class="w-4 h-4 text-green-400 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
+                                    <span class="text-gray-300">2 vCPU, 2GB RAM</span>
+                                </li>
+                                <li class="flex items-center gap-3">
+                                    <svg class="w-4 h-4 text-green-400 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
+                                    <span class="text-gray-300">1GB persistent storage</span>
+                                </li>
+                                <li class="flex items-center gap-3">
+                                    <svg class="w-4 h-4 text-green-400 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
+                                    <span class="text-gray-300">Browser-based terminal</span>
+                                </li>
+                                <li class="flex items-center gap-3">
+                                    <svg class="w-4 h-4 text-green-400 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
+                                    <span class="text-gray-300">Clawdbot pre-installed</span>
+                                </li>
+                                <li class="flex items-center gap-3">
+                                    <svg class="w-4 h-4 text-green-400 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
+                                    <span class="text-gray-300">No hourly charges</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- LLM Usage -->
+                    <div class="pricing-card rounded-3xl p-8 border border-brand-500/30">
+                        <div class="text-center">
+                            <div class="text-brand-400 text-sm font-medium uppercase tracking-wide mb-2">LLM Usage</div>
+                            <div class="flex items-baseline justify-center gap-2 mb-2">
+                                <span class="text-4xl font-bold text-white">Market</span>
+                                <span class="text-gray-400 text-lg">price</span>
+                            </div>
+                            <div class="text-gray-500 text-sm mb-6">Your only ongoing cost — pay per token</div>
+                            <ul class="space-y-3 text-left text-sm">
+                                <li class="flex items-center gap-3">
+                                    <svg class="w-4 h-4 text-green-400 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
+                                    <span class="text-gray-300">Claude (Anthropic)</span>
+                                </li>
+                                <li class="flex items-center gap-3">
+                                    <svg class="w-4 h-4 text-green-400 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
+                                    <span class="text-gray-300">GPT (OpenAI)</span>
+                                </li>
+                                <li class="flex items-center gap-3">
+                                    <svg class="w-4 h-4 text-green-400 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
+                                    <span class="text-gray-300">Gemini (Google)</span>
+                                </li>
+                                <li class="flex items-center gap-3">
+                                    <svg class="w-4 h-4 text-green-400 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
+                                    <span class="text-gray-300">And more providers</span>
+                                </li>
+                                <li class="flex items-center gap-3">
+                                    <svg class="w-4 h-4 text-green-400 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
+                                    <span class="text-gray-300">No API keys needed</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="mt-10 p-6 bg-gray-800/30 rounded-2xl border border-gray-700/50">
+                    <div class="flex flex-col md:flex-row items-center justify-between gap-6">
+                        <div class="text-center md:text-left">
+                            <p class="text-white font-medium mb-1">Billed to your ATXP account</p>
+                            <p class="text-gray-400 text-sm">No hourly fees, no contracts, no commitments. Just pay for what you use.</p>
+                        </div>
+                        <a href="https://clowdbot.atxp.ai" class="inline-block px-8 py-4 bg-brand-600 hover:bg-brand-700 text-white text-lg font-semibold rounded-xl transition-colors whitespace-nowrap">
+                            Get Started Now
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Specs Section -->
+    <section id="specs" class="py-24 bg-gray-950">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl sm:text-4xl font-bold text-white mb-4">Instance Specifications</h2>
+                <p class="text-xl text-gray-400 max-w-2xl mx-auto">A fully configured environment ready to run Clawdbot and all its integrations.</p>
+            </div>
+            <div class="grid md:grid-cols-2 gap-8">
+                <!-- Hardware Specs -->
+                <div class="bg-gray-800/50 rounded-2xl p-8 border border-gray-700/50">
+                    <h3 class="text-xl font-semibold text-white mb-6 flex items-center gap-2">
+                        <svg class="w-6 h-6 text-brand-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z"></path>
+                        </svg>
+                        Infrastructure
+                    </h3>
+                    <ul class="space-y-4">
+                        <li class="flex justify-between items-center py-3 border-b border-gray-700">
+                            <span class="text-gray-400">CPU</span>
+                            <span class="text-white font-medium">2 vCPU (shared)</span>
+                        </li>
+                        <li class="flex justify-between items-center py-3 border-b border-gray-700">
+                            <span class="text-gray-400">Memory</span>
+                            <span class="text-white font-medium">2 GB RAM</span>
+                        </li>
+                        <li class="flex justify-between items-center py-3 border-b border-gray-700">
+                            <span class="text-gray-400">Storage</span>
+                            <span class="text-white font-medium">1 GB persistent</span>
+                        </li>
+                        <li class="flex justify-between items-center py-3">
+                            <span class="text-gray-400">Region</span>
+                            <span class="text-white font-medium">Auto-selected (nearest)</span>
+                        </li>
+                    </ul>
+                </div>
+                <!-- LLM Access -->
+                <div class="bg-gray-800/50 rounded-2xl p-8 border border-gray-700/50">
+                    <h3 class="text-xl font-semibold text-white mb-6 flex items-center gap-2">
+                        <svg class="w-6 h-6 text-brand-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path>
+                        </svg>
+                        LLM Access
+                    </h3>
+                    <ul class="space-y-4">
+                        <li class="flex justify-between items-center py-3 border-b border-gray-700">
+                            <span class="text-gray-400">Claude</span>
+                            <span class="text-white font-medium">Anthropic</span>
+                        </li>
+                        <li class="flex justify-between items-center py-3 border-b border-gray-700">
+                            <span class="text-gray-400">GPT</span>
+                            <span class="text-white font-medium">OpenAI</span>
+                        </li>
+                        <li class="flex justify-between items-center py-3 border-b border-gray-700">
+                            <span class="text-gray-400">Gemini</span>
+                            <span class="text-white font-medium">Google</span>
+                        </li>
+                        <li class="flex justify-between items-center py-3">
+                            <span class="text-gray-400">& More</span>
+                            <span class="text-white font-medium">Always expanding</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-24 gradient-bg">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 class="text-3xl sm:text-4xl font-bold text-white mb-6">Ready for an AI That Actually Does Things?</h2>
+            <p class="text-xl text-gray-300 mb-10">Launch your personal Clawdbot instance in the cloud. Always on, accessible anywhere.</p>
+            <a href="https://clowdbot.atxp.ai" class="inline-flex items-center justify-center px-10 py-5 bg-white text-brand-700 text-lg font-bold rounded-xl transition-all hover:scale-105 hover:shadow-2xl">
+                🚀 Launch Your Instance
+            </a>
+            <p class="mt-6 text-gray-400">Fund your ATXP account and get started</p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-950 border-t border-gray-800 py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row items-center justify-between gap-6">
+                <div class="flex items-center space-x-2">
+                    <span class="text-2xl">☁️🦞</span>
+                    <span class="text-xl font-bold text-white">Clowdbot</span>
+                </div>
+                <div class="flex items-center gap-8 text-gray-400">
+                    <a href="#features" class="hover:text-white transition-colors">Features</a>
+                    <a href="#pricing" class="hover:text-white transition-colors">Pricing</a>
+                    <a href="#specs" class="hover:text-white transition-colors">Specs</a>
+                    <a href="https://clowdbot.atxp.ai" class="hover:text-white transition-colors">Sign In</a>
+                </div>
+            </div>
+            <div class="mt-8 pt-8 border-t border-gray-800 text-center text-gray-500">
+                <p>&copy; 2026 Clowdbot. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Smooth scrolling -->
+    <script>
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
